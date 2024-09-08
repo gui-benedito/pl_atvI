@@ -7,4 +7,14 @@ export default class Produto {
         this.valor = valor
         this.quantidade = quantidade
     }
+
+    public set setNome(nome: string){
+        this.nome = nome
+    }
+    public set setValor(valor: number){
+        this.valor = valor
+    }
+    public set setQuantidade(quantidade: number){
+        this.quantidade = quantidade
+    }
 }

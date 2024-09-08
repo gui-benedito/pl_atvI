@@ -3,9 +3,11 @@ import Empresa from "../modelo/empresa";
 import CadastroCliente from "../negocio/cadastroCliente";
 import CadastroPet from "../negocio/cadastroPet";
 import CadastroProduto from "../negocio/cadastroProduto";
+import CadastroServico from "../negocio/cadastroServico";
 import ListagemClientes from "../negocio/listagemClientes";
 import ListagemPet from "../negocio/listagemPet";
 import ListagemProdutos from "../negocio/listagemProduto";
+import ListagemServicos from "../negocio/listagemServico";
 
 console.log(`Bem-vindo ao melhor sistema de gerenciamento de pet shops e clínicas veterinarias`)
 let empresa = new Empresa()
@@ -141,6 +143,58 @@ while (execucao) {
                         if(empresa.confirmaProduto()){
                             let listarProdutos = new ListagemProdutos(empresa)
                             listarProdutos.listar()
+                        }
+                        break
+                    case 3:
+                        if(empresa.confirmaProduto()){
+                            let listarProdutos = new CadastroProduto(empresa)
+                            listarProdutos.updateProduto()
+                        }
+                        break
+                    case 4:
+                        if(empresa.confirmaProduto()){
+                            let listarProdutos = new CadastroProduto(empresa)
+                            listarProdutos.deletarProduto()
+                        }
+                        break
+                    case 0:
+                        break
+                    default:
+                        console.log(`Operação não entendida :(`)
+                }
+            }while(opcao !== 0)
+            break
+        case 4:
+            do{
+                entrada = new Entrada()
+                console.log(`Opções:`)
+                console.log(`1 - Cadastrar servico`)
+                console.log(`2 - Listar todos os servicos`)
+                console.log(`3 - Editar servico`)
+                console.log(`4 - Deletar servico`)
+                console.log(`0 - Voltar`)
+                opcao = entrada.receberNumero(`Opção desejada: `)
+                switch(opcao){
+                    case 1:
+                        let servico = new CadastroServico(empresa)
+                        servico.cadastrar()
+                        break
+                    case 2:
+                        if(empresa.confirmaServico()){
+                            let listarservicos = new ListagemServicos(empresa)
+                            listarservicos.listar()
+                        }
+                        break
+                    case 3:
+                        if(empresa.confirmaServico()){
+                            let listarservicos = new CadastroServico(empresa)
+                            listarservicos.updateServico()
+                        }
+                        break
+                    case 4:
+                        if(empresa.confirmaServico()){
+                            let listarservicos = new CadastroServico(empresa)
+                            listarservicos.deletarServico()
                         }
                         break
                     case 0:

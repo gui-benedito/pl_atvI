@@ -6,6 +6,9 @@ import RG from "./rg"
 import Servico from "./servico"
 
 export default class Empresa{
+    CadastroServico() {
+        throw new Error("Method not implemented.")
+    }
     private clientes: Array<Cliente>
     private produtos: Array<Produto>
     private servicos: Array<Servico>
@@ -33,6 +36,10 @@ export default class Empresa{
         this.produtos = produtos
     }
 
+    public set setServicos(servicos: Array<Servico>){
+        this.servicos = servicos
+    }
+
     public findClienteByCpf(cpf: string){
         return this.clientes.find(cliente => cliente.getCpf.getValor === cpf)
     }
@@ -40,6 +47,14 @@ export default class Empresa{
     public confirmaProduto(): boolean{
         if(!this.produtos.length){
             console.log(`Sem produtos cadastrados!`)
+            return false
+        }
+        return true
+    }
+
+    public confirmaServico(): boolean{
+        if(!this.servicos.length){
+            console.log(`Sem serviços cadastrados!`)
             return false
         }
         return true
