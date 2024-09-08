@@ -29,8 +29,20 @@ export default class Empresa{
         this.clientes = newClientes
     }
 
+    public set setProdutos(produtos: Array<Produto>){
+        this.produtos = produtos
+    }
+
     public findClienteByCpf(cpf: string){
         return this.clientes.find(cliente => cliente.getCpf.getValor === cpf)
+    }
+
+    public confirmaProduto(): boolean{
+        if(!this.produtos.length){
+            console.log(`Sem produtos cadastrados!`)
+            return false
+        }
+        return true
     }
 
     public confirmaClientes(): boolean{

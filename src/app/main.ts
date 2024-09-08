@@ -2,8 +2,10 @@ import Entrada from "../io/entrada";
 import Empresa from "../modelo/empresa";
 import CadastroCliente from "../negocio/cadastroCliente";
 import CadastroPet from "../negocio/cadastroPet";
+import CadastroProduto from "../negocio/cadastroProduto";
 import ListagemClientes from "../negocio/listagemClientes";
 import ListagemPet from "../negocio/listagemPet";
+import ListagemProdutos from "../negocio/listagemProduto";
 
 console.log(`Bem-vindo ao melhor sistema de gerenciamento de pet shops e clínicas veterinarias`)
 let empresa = new Empresa()
@@ -119,6 +121,34 @@ while (execucao) {
             }else{
                 console.log(`Cliente não encontrado!`)
             }
+            break
+        case 3:
+            do{
+                entrada = new Entrada()
+                console.log(`Opções:`)
+                console.log(`1 - Cadastrar produto`)
+                console.log(`2 - Listar todos os produtos`)
+                console.log(`3 - Editar produto`)
+                console.log(`4 - Deletar produto`)
+                console.log(`0 - Voltar`)
+                opcao = entrada.receberNumero(`Opção desejada: `)
+                switch(opcao){
+                    case 1:
+                        let produto = new CadastroProduto(empresa)
+                        produto.cadastrar()
+                        break
+                    case 2:
+                        if(empresa.confirmaProduto()){
+                            let listarProdutos = new ListagemProdutos(empresa)
+                            listarProdutos.listar()
+                        }
+                        break
+                    case 0:
+                        break
+                    default:
+                        console.log(`Operação não entendida :(`)
+                }
+            }while(opcao !== 0)
             break
         case 0:
             execucao = false
