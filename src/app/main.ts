@@ -20,6 +20,7 @@ while (execucao) {
     console.log(`3 - Produtos`)
     console.log(`4 - Serviços`)
     console.log(`5 - Outros`)
+    console.log(`6 - Cadastrar venda`)
     console.log(`0 - Sair`)
 
     let entrada = new Entrada()
@@ -71,7 +72,7 @@ while (execucao) {
                 console.log(`Não há clientes cadastrados!`)
                 break
             }
-            let cliente = empresa.findClienteByCpf(entrada.receberTexto('Digite o numero do CPF do cliente: '))            
+            let cliente = empresa.findCliente(entrada.receberNumero('Digite o numero do id do cliente: '))            
             if(cliente) {
                 do{
                     console.log(`Opções:`)
@@ -201,6 +202,29 @@ while (execucao) {
                         break
                     default:
                         console.log(`Operação não entendida :(`)
+                }
+            }while(opcao !== 0)
+            break
+        case 5:
+            break
+        case 6:
+            do{
+                console.log(`1 - Venda de produto`)
+                console.log(`2 - Venda de serviço`)
+                console.log(`0 - Voltar`)
+                opcao = entrada.receberNumero(`Opção desejada: `)
+                let nome: string
+                switch(opcao){
+                    case 1:
+                        nome = entrada.receberTexto(`Cliente: `)
+                        let cliente = empresa.getClientes.find((c => c.nome === nome))
+                        let id = entrada.receberNumero(`Id do produto: `)
+                        let produto = empresa.getProdutos[id-1]
+                        break
+                    case 2:
+                        break
+                    default:
+                        console.log(`Opção inválida!`)
                 }
             }while(opcao !== 0)
             break

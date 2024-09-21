@@ -23,20 +23,18 @@ export default class CadastroPet extends Cadastro{
     }
 
     public deletar(): void{
-        let deletarPet = this.entrada.receberTexto('Nome do pet a ser deletado: ')
-        let petExiste = this.cliente.getPets.find((p => p.getNome == deletarPet))
-        if(petExiste){
-            let newPets = this.cliente.getPets.filter((p => p.getNome !== deletarPet))
-            this.cliente.setPets = newPets
-            console.log(`${deletarPet} deletado com sucesso!`)
-            return
+        let id = this.entrada.receberNumero('Id do pet a ser deletado: ')
+        if (id >= 0 && id < this.cliente.getPets.length){
+            this.cliente.getPets.splice(id, 1)
+            console.log('Pet deletado com sucesso')
+        }else {
+            console.log(`ID inválido. Nenhum pet foi deletado.`);
         }
-        console.log(`${deletarPet} não encontrado`)
     }
 
     public updatePet(): void{
-        let nomePet = this.entrada.receberTexto('Nome do pet a ser atualizado: ')
-        let pet = this.cliente.getPets.find(p => p.getNome === nomePet)
+        let id = this.entrada.receberNumero('Id do pet a ser atualizado: ')
+        let pet = this.cliente.getPets[id]
         if(pet){
             console.log(`1 - Nome`)
             console.log(`2 - Raça`)

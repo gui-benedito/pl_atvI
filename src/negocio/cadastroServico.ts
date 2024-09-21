@@ -27,9 +27,9 @@ export default class CadastroServico extends Cadastro{
     }
 
     public updateServico(): void{
-        let nomeServico = this.entrada.receberTexto('Nome do Servico a ser atualizado: ')
-        let Servico = this.empresa.getServicos.find(p => p.nome === nomeServico)
-        if(Servico){
+        let id = this.entrada.receberNumero('Id do produto a ser atualizado: ')
+        let servico = this.empresa.getServicos[id]
+        if(servico){
             let opcao: number
             do{
                 console.log(`O que deseja atualziar?`)
@@ -38,20 +38,22 @@ export default class CadastroServico extends Cadastro{
                 console.log(`3 - Tudo`)
                 console.log(`0 - Voltar`)
                 opcao = this.entrada.receberNumero(`Opção: `)
+                let novoNome: string
+                let novoValor: number
                 switch(opcao){
                     case 1:
-                        let novoNome = this.entrada.receberTexto(`Novo nome: `)
-                        Servico.setNome = novoNome
+                        novoNome = this.entrada.receberTexto(`Novo nome: `)
+                        servico.setNome = novoNome
                         break
                     case 2:
-                        let novoValor = this.entrada.receberNumero(`Novo valor: `)
-                        Servico.setValor = novoValor
+                        novoValor = this.entrada.receberNumero(`Novo valor: `)
+                        servico.setValor = novoValor
                         break
                     case 3:
                         novoNome = this.entrada.receberTexto(`Novo nome: `)
                         novoValor = this.entrada.receberNumero(`Novo valor: `)
-                        Servico.setNome = novoNome
-                        Servico.setValor = novoValor
+                        servico.setNome = novoNome
+                        servico.setValor = novoValor
                         break
                     default:
                         console.log(`Opção inválida`)
@@ -65,14 +67,12 @@ export default class CadastroServico extends Cadastro{
     }
 
     public deletarServico(): void{
-        let nomeServico = this.entrada.receberTexto(`Servico a ser deletado: `)
-        let ServicoExiste = this.empresa.getServicos.find(e => e.nome === nomeServico)
-        if(ServicoExiste){
-            let Servicos = this.empresa.getServicos.filter(e => e.nome !== nomeServico)
-            this.empresa.setServicos = Servicos
-            console.log(`Servico excluído com sucesso!`)
-            return
+        let id = this.entrada.receberNumero(`Id do serviço a ser deletado: `)
+        if(id >= 0 && id < this.empresa.getServicos.length){
+            this.empresa.getServicos.splice(id, 1)
+            console.log('Serviço deletado com sucesso')
+        }else{
+            console.log('Serviço não encontrado')
         }
-        console.log(`Servico não encontrado!`)
     }
 }

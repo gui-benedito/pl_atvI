@@ -28,8 +28,8 @@ export default class CadastroProduto extends Cadastro{
     }
 
     public updateProduto(): void{
-        let nomeProduto = this.entrada.receberTexto('Nome do produto a ser atualizado: ')
-        let produto = this.empresa.getProdutos.find(p => p.nome === nomeProduto)
+        let id = this.entrada.receberNumero('Id do produto a ser atualizado: ')
+        let produto = this.empresa.getProdutos[id]
         if(produto){
             let opcao: number
             do{
@@ -40,17 +40,20 @@ export default class CadastroProduto extends Cadastro{
                 console.log(`4 - Tudo`)
                 console.log(`0 - Voltar`)
                 opcao = this.entrada.receberNumero(`Opção: `)
+                let novoNome: string
+                let novoValor: number
+                let novaQuantidade: number
                 switch(opcao){
                     case 1:
-                        let novoNome = this.entrada.receberTexto(`Novo nome: `)
+                        novoNome = this.entrada.receberTexto(`Novo nome: `)
                         produto.setNome = novoNome
                         break
                     case 2:
-                        let novoValor = this.entrada.receberNumero(`Novo valor: `)
+                        novoValor = this.entrada.receberNumero(`Novo valor: `)
                         produto.setValor = novoValor
                         break
                     case 3:
-                        let novaQuantidade = this.entrada.receberNumero(`Nova quantidade: `)
+                        novaQuantidade = this.entrada.receberNumero(`Nova quantidade: `)
                         produto.setQuantidade = novaQuantidade
                         break
                     case 4:
@@ -65,7 +68,7 @@ export default class CadastroProduto extends Cadastro{
                         console.log(`Opção inválida`)
                 }
             }while(opcao !== 0)
-            console.log(`Produto atualziado!`)
+            console.log(`Produto atualizado!`)
         }else{
             console.log(`Produto não encontrado!`)
             return
@@ -73,14 +76,12 @@ export default class CadastroProduto extends Cadastro{
     }
 
     public deletarProduto(): void{
-        let nomeProduto = this.entrada.receberTexto(`Produto a ser deletado: `)
-        let produtoExiste = this.empresa.getProdutos.find(e => e.nome === nomeProduto)
-        if(produtoExiste){
-            let produtos = this.empresa.getProdutos.filter(e => e.nome !== nomeProduto)
-            this.empresa.setProdutos = produtos
-            console.log(`Produto excluído com sucesso!`)
-            return
+        let id = this.entrada.receberNumero(`Id do produto a ser deletado: `)
+        if(id >= 0 && id < this.empresa.getProdutos.length){
+            this.empresa.getProdutos.splice(id, 1)
+            console.log('Produto deletado com sucesso')
+        }else{
+            console.log('Produto não encontrado')
         }
-        console.log(`Produto não encontrado!`)
     }
 }

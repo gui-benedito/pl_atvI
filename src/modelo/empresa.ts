@@ -40,8 +40,8 @@ export default class Empresa{
         this.servicos = servicos
     }
 
-    public findClienteByCpf(cpf: string){
-        return this.clientes.find(cliente => cliente.getCpf.getValor === cpf)
+    public findCliente(id: number){
+        return this.clientes[id]
     }
 
     public confirmaProduto(): boolean{
@@ -69,38 +69,44 @@ export default class Empresa{
     }
 
     public deletar(): void{
-        let nome = this.entrada.receberTexto(`Nome: `)
-        let newClientes = this.clientes.filter((c) => c.nome !== nome)
-        this.setClientes = newClientes
-        console.log(`Cliente deletado com sucesso!`)
+        let id = this.entrada.receberNumero(`Id do cliente a ser deletado: `);
+        // Verifica se o id está dentro do intervalo de clientes
+        if (id >= 0 && id < this.clientes.length) {
+            this.clientes.splice(id, 1) // Remove o cliente no índice `id`
+            console.log(`Cliente deletado com sucesso!`);
+        } else {
+            console.log(`ID inválido. Nenhum cliente foi deletado.`);
+        }
     }
 
     public updateCliente(){
-        let nome = this.entrada.receberTexto(`Nome: `)
-        let cliente = this.getClientes.find((c) => c.nome === nome)
-        if(cliente){
-            let nome = this.entrada.receberTexto(`Novo nome do cliente: `)
-            let nomeSocial = this.entrada.receberTexto(`Novo nome social do cliente: `)
-
-            let valorCPF = this.entrada.receberTexto(`Novo número do cpf: `);
-            let dataCPF = this.entrada.receberTexto(`Por favor informe a data de emissão do cpf, no padrão dd/mm/yyyy: `);
-            let partesDataCPF = dataCPF.split('/')
-            let anocpf = new Number(partesDataCPF[2].valueOf()).valueOf()
-            let mescpf = new Number(partesDataCPF[1].valueOf()).valueOf()
-            let diacpf = new Number(partesDataCPF[0].valueOf()).valueOf()
-            let dataEmissaoCPF = new Date(anocpf, mescpf, diacpf)
-            let cpf = new CPF(valorCPF, dataEmissaoCPF);
-
-            let valorRG = this.entrada.receberTexto(`Novo número do rg: `);
-            let dataRG = this.entrada.receberTexto(`Por favor informe a data de emissão do rg, no padrão dd/mm/yyyy: `);
-            let partesData = dataRG.split('/')
-            let ano = new Number(partesData[2].valueOf()).valueOf()
-            let mes = new Number(partesData[1].valueOf()).valueOf()
-            let dia = new Number(partesData[0].valueOf()).valueOf()
-            let dataEmissaoRG = new Date(ano, mes, dia)
-            let rg = new RG(valorRG, dataEmissaoRG);
-
-            cliente.updateCliente(nome, nomeSocial, cpf, rg)
+        let id = this.entrada.receberNumero(`Id do cliente a ser atualziado: `)
+        let cliente = this.getClientes[id]
+        if(!cliente){
+            console.log('Cliente não encontrado!')
+            return
         }
+        let nome = this.entrada.receberTexto(`Novo nome do cliente: `)
+        let nomeSocial = this.entrada.receberTexto(`Novo nome social do cliente: `)
+
+        let valorCPF = this.entrada.receberTexto(`Novo número do cpf: `);
+        let dataCPF = this.entrada.receberTexto(`Por favor informe a data de emissão do cpf, no padrão dd/mm/yyyy: `);
+        let partesDataCPF = dataCPF.split('/')
+        let anocpf = new Number(partesDataCPF[2].valueOf()).valueOf()
+        let mescpf = new Number(partesDataCPF[1].valueOf()).valueOf()
+        let diacpf = new Number(partesDataCPF[0].valueOf()).valueOf()
+        let dataEmissaoCPF = new Date(anocpf, mescpf, diacpf)
+        let cpf = new CPF(valorCPF, dataEmissaoCPF);
+
+        let valorRG = this.entrada.receberTexto(`Novo número do rg: `);
+        let dataRG = this.entrada.receberTexto(`Por favor informe a data de emissão do rg, no padrão dd/mm/yyyy: `);
+        let partesData = dataRG.split('/')
+        let ano = new Number(partesData[2].valueOf()).valueOf()
+        let mes = new Number(partesData[1].valueOf()).valueOf()
+        let dia = new Number(partesData[0].valueOf()).valueOf()
+        let dataEmissaoRG = new Date(ano, mes, dia)
+        let rg = new RG(valorRG, dataEmissaoRG);
+
+        cliente.updateCliente(nome, nomeSocial, cpf, rg)
     }
 }

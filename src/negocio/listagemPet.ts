@@ -13,7 +13,8 @@ export default class ListagemPet extends Listagem{
 
     public listar(){
         console.log(`\nLista dos pets de ${this.cliente.nome}:`);
-        this.cliente.getPets.forEach((pet) => {
+        this.cliente.getPets.forEach((pet, i) => {
+            console.log(`Id: ${i}`)
             console.log(`Nome: ${pet.getNome}`)
             console.log(`Raça: ${pet.getRaca}`)
             console.log(`Gênero: ${pet.getGenero}`)
@@ -23,8 +24,8 @@ export default class ListagemPet extends Listagem{
     }
 
     public petEspecifico(){
-        let nome = this.entrada.receberTexto(`Nome: `)
-        let pet = this.cliente.getPets.find((p => p.getNome === nome))
+        let id = this.entrada.receberNumero(`Id: `)
+        let pet = this.cliente.getPets[id]
         console.log(`\nNome: ${pet?.getNome}`)
         console.log(`Raça: ${pet?.getRaca}`)
         console.log(`Gênero: ${pet?.getGenero}`)
