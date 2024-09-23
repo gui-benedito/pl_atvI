@@ -77,6 +77,6 @@ export function cincoMais(clientes: Cliente[]){
     listaArray.sort((a,b) => b[1] - a[1]).slice(0, 5)
     console.log(`Clientes que mais consumiram:`)
     listaArray.forEach((e) => {
-        console.log(`Nome:${e[0]}, R$${e[1].toFixed(2)}`)
+        console.log(`Nome: ${e[0]}, R$${e[1].toFixed(2)}`)
     })
 }

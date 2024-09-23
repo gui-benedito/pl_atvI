@@ -35,7 +35,7 @@ export default class ListagemClientes extends Listagem {
                 lista[p.nome] += 1
             })
         })
-        console.log(`Produtos mais consumidos por ${tipo} e ${raca}`)
+        console.log(`Serviços mais consumidos por tipo e/ou raça`)
         Object.entries(lista).forEach((p) => {
             console.log(`Produto: ${p[0]}, quantidade: ${p[1]}`)
         })
@@ -57,7 +57,7 @@ export default class ListagemClientes extends Listagem {
                 lista[p.nome] += 1
             })
         })
-        console.log(`Serviços mais consumidos por ${tipo} e ${raca}`)
+        console.log(`Serviços mais consumidos por tipo e/ou raça`)
         Object.entries(lista).forEach((p) => {
             console.log(`Produto: ${p[0]}, quantidade: ${p[1]}`)
         })
