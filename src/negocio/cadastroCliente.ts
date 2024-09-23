@@ -14,7 +14,7 @@ export default class CadastroCliente extends Cadastro {
         this.entrada = new Entrada()
     }
     public cadastrar(): void {
-        console.log(`\nInício do cadastro do cliente`);
+        console.log(`Início do cadastro do cliente`);
         let nome = this.entrada.receberTexto(`Por favor informe o nome do cliente: `)
         let nomeSocial = this.entrada.receberTexto(`Por favor informe o nome social do cliente: `)
 
@@ -42,6 +42,6 @@ export default class CadastroCliente extends Cadastro {
 
         let cliente = new Cliente(nome, nomeSocial, cpf, rg, telefone);
         this.clientes.push(cliente)
-        console.log(`Cadastro concluído :)`);
+        console.log(`Cadastro concluído :)`)
     }
 }

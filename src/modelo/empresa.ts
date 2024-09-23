@@ -47,6 +47,7 @@ export default class Empresa{
     public confirmaProduto(): boolean{
         if(!this.produtos.length){
             console.log(`Sem produtos cadastrados!`)
+
             return false
         }
         return true
@@ -55,6 +56,7 @@ export default class Empresa{
     public confirmaServico(): boolean{
         if(!this.servicos.length){
             console.log(`Sem serviços cadastrados!`)
+
             return false
         }
         return true
@@ -63,6 +65,7 @@ export default class Empresa{
     public confirmaClientes(): boolean{
         if(!this.clientes.length){
             console.log(`Sem clientes cadastrados!`)
+
             return false
         }
         return true
@@ -108,5 +111,44 @@ export default class Empresa{
         let rg = new RG(valorRG, dataEmissaoRG);
 
         cliente.updateCliente(nome, nomeSocial, cpf, rg)
+        console.log(`Cliente atualizado`)
+    }
+
+    public vendaProduto(): void{
+        let idCliente = this.entrada.receberNumero(`Id do cliente: `)
+        let cliente = this.getClientes[idCliente]
+        if(!cliente){
+            console.log('Cliente não encontrado!')
+            return
+        }
+        let idProduto = this.entrada.receberNumero(`Id do produto: `)
+        let produto = this.getProdutos[idProduto]
+        if(!produto){
+            console.log('Produto não encontrado!')
+            return
+        }
+        let quantidade = this.entrada.receberNumero("Quantidade: ")
+        for(let i = 1; i <= quantidade; i++){
+            cliente.getProdutosConsumidos.push(produto)
+        }
+        produto.quantidade -= quantidade
+        console.log(`Venda cadastrada`)
+    }
+
+    public vendaServico(){
+        let idCliente = this.entrada.receberNumero(`Id do cliente: `)
+        let cliente = this.getClientes[idCliente]
+        if(!cliente){
+            console.log('Cliente não encontrado!')
+            return
+        }
+        let idServico = this.entrada.receberNumero(`Id do serviço: `)
+        let servico = this.getServicos[idServico]
+        if(!servico){
+            console.log('Produto não encontrado!')
+            return
+        }
+        cliente.getServicosConsumidos.push(servico)
+        console.log(`Venda cadastrada`)
     }
 }

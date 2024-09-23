@@ -14,6 +14,7 @@ export default class ListagemServicos extends Listagem{
             console.log(`Id: ${i}`)
             console.log(`Nome: ${produto.nome}`)
             console.log(`Valor: ${produto.valor}`)
+            console.log(`--------------------------------`)
         })
     }
 }

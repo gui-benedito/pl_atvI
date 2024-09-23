@@ -1,4 +1,5 @@
 import Entrada from "../io/entrada";
+import Cliente from "../modelo/cliente";
 import Empresa from "../modelo/empresa";
 import CadastroCliente from "../negocio/cadastroCliente";
 import CadastroPet from "../negocio/cadastroPet";
@@ -8,6 +9,7 @@ import ListagemClientes from "../negocio/listagemClientes";
 import ListagemPet from "../negocio/listagemPet";
 import ListagemProdutos from "../negocio/listagemProduto";
 import ListagemServicos from "../negocio/listagemServico";
+import { cincoMais, dezProdutosMaisConsumidos, dezServicosMaisConsumidos, produtosMaisConsumidos, servicosMaisConsumidos } from "../negocio/outros";
 
 console.log(`Bem-vindo ao melhor sistema de gerenciamento de pet shops e clínicas veterinarias`)
 let empresa = new Empresa()
@@ -19,16 +21,18 @@ while (execucao) {
     console.log(`2 - Pets`)
     console.log(`3 - Produtos`)
     console.log(`4 - Serviços`)
-    console.log(`5 - Outros`)
-    console.log(`6 - Cadastrar venda`)
+    console.log(`5 - Cadastrar venda`)
+    console.log(`6 - Outros`)
     console.log(`0 - Sair`)
 
     let entrada = new Entrada()
+    console.log('\n')
     let opcao = entrada.receberNumero(`Por favor, escolha uma opção: `)
 
     switch(opcao){
         case 1:
             do{
+                console.log('\n')
                 console.log(`Opções:`)
                 console.log(`1 - Cadastrar cliente`)
                 console.log(`2 - Listar todos os clientes`)
@@ -37,6 +41,7 @@ while (execucao) {
                 console.log(`0 - Voltar`)
 
                 entrada = new Entrada()
+                console.log('\n')
                 opcao = entrada.receberNumero(`Opção desejada: `)
 
                 switch (opcao) {
@@ -63,18 +68,22 @@ while (execucao) {
                     case 0:
                         break
                     default:
+                        console.log('\n')
                         console.log(`Opção inválida!`)
                 }
             }while(opcao !== 0)
             break
         case 2:
             if(!empresa.getClientes.length){
+                console.log('\n')
                 console.log(`Não há clientes cadastrados!`)
                 break
             }
+            console.log('\n')
             let cliente = empresa.findCliente(entrada.receberNumero('Digite o numero do id do cliente: '))            
             if(cliente) {
                 do{
+                    console.log('\n')
                     console.log(`Opções:`)
                     console.log(`1 - Cadastrar pet`)
                     console.log(`2 - Listar todos os pets`)
@@ -84,6 +93,7 @@ while (execucao) {
                     console.log(`0 - Voltar`)
                     
                     entrada = new Entrada()
+                    console.log('\n')
                     opcao = entrada.receberNumero(`Opção desejada: `)
                     switch(opcao){
                         case 1:
@@ -117,23 +127,27 @@ while (execucao) {
                         case 0:
                             break
                         default:
+                            console.log('\n')
                             console.log(`Operação não entendida :(`)
                     }
                 }while(opcao !== 0)
 
             }else{
+                console.log('\n')
                 console.log(`Cliente não encontrado!`)
             }
             break
         case 3:
             do{
                 entrada = new Entrada()
+                console.log('\n')
                 console.log(`Opções:`)
                 console.log(`1 - Cadastrar produto`)
                 console.log(`2 - Listar todos os produtos`)
                 console.log(`3 - Editar produto`)
                 console.log(`4 - Deletar produto`)
                 console.log(`0 - Voltar`)
+                console.log('\n')
                 opcao = entrada.receberNumero(`Opção desejada: `)
                 switch(opcao){
                     case 1:
@@ -161,6 +175,7 @@ while (execucao) {
                     case 0:
                         break
                     default:
+                        console.log('\n')
                         console.log(`Operação não entendida :(`)
                 }
             }while(opcao !== 0)
@@ -168,12 +183,14 @@ while (execucao) {
         case 4:
             do{
                 entrada = new Entrada()
+                console.log('\n')
                 console.log(`Opções:`)
                 console.log(`1 - Cadastrar servico`)
                 console.log(`2 - Listar todos os servicos`)
                 console.log(`3 - Editar servico`)
                 console.log(`4 - Deletar servico`)
                 console.log(`0 - Voltar`)
+                console.log('\n')
                 opcao = entrada.receberNumero(`Opção desejada: `)
                 switch(opcao){
                     case 1:
@@ -201,30 +218,197 @@ while (execucao) {
                     case 0:
                         break
                     default:
+                        console.log('\n')
                         console.log(`Operação não entendida :(`)
                 }
             }while(opcao !== 0)
             break
         case 5:
-            break
-        case 6:
             do{
+                console.log('\n')
                 console.log(`1 - Venda de produto`)
                 console.log(`2 - Venda de serviço`)
                 console.log(`0 - Voltar`)
+                console.log('\n')
                 opcao = entrada.receberNumero(`Opção desejada: `)
-                let nome: string
                 switch(opcao){
                     case 1:
-                        nome = entrada.receberTexto(`Cliente: `)
-                        let cliente = empresa.getClientes.find((c => c.nome === nome))
-                        let id = entrada.receberNumero(`Id do produto: `)
-                        let produto = empresa.getProdutos[id-1]
+                        empresa.vendaProduto()
                         break
                     case 2:
+                        empresa.vendaServico()
                         break
                     default:
+                        console.log('\n')
                         console.log(`Opção inválida!`)
+                }
+            }while(opcao !== 0)
+            break
+        case 6:
+            do{
+                console.log('\n')
+                console.log(`1 - Registro de consumo dos produtos ou serviços que cada cliente adquiriu.`)
+                console.log(`2 - Listagem dos 10 clientes que mais consumiram produtos ou serviços, em quantidade, não em valor.`)
+                console.log(`3 - Listagem geral dos serviços ou produtos mais consumidos.`)
+                console.log(`4 - Listagem dos serviços ou produtos mais consumidos por tipo e raça de pets.`)
+                console.log(`5 - Listagem dos 5 clientes que mais consumiram em valor, não em quantidade.`)
+                console.log(`0 - Voltar`)
+                console.log('\n')
+                opcao = entrada.receberNumero(`Opção desejada: `)
+                switch(opcao){
+                    case 1:
+                        do{
+                            console.log('\n')
+                            console.log(`1 - Por produto`)
+                            console.log(`2 - Por serviço`)
+                            console.log(`0 - Voltar`)
+                            console.log('\n')
+                            opcao = entrada.receberNumero(`Opção desejada: `)
+                            let id: number
+                            let cliente: Cliente
+                            switch(opcao){
+                                case 1:
+                                    console.log('\n')
+                                    id = entrada.receberNumero(`Id do cliente: `)
+                                    cliente = empresa.getClientes[id]
+                                    if(!cliente){
+                                        console.log('\n')
+                                        console.log(`Cliente não encontrado!`)
+                                        break
+                                    }
+                                    cliente.listarProduto()
+                                    break
+                                case 2:
+                                    console.log('\n')
+                                    id = entrada.receberNumero(`Id do cliente: `)
+                                    cliente = empresa.getClientes[id]
+                                    if(!cliente){
+                                        console.log('\n')
+                                        console.log(`Cliente não encontrado!`)
+                                        break
+                                    }
+                                    cliente.listarServico()
+                                    break
+                                case 0:
+                                    break
+                                default:
+                                    console.log('\n')
+                                    console.log(`Operação não entendida :(`)
+                            }
+                        }while(opcao !== 0)
+                        break
+                    case 2:
+                        do{
+                            console.log('\n')
+                            console.log(`1 - Por produto`)
+                            console.log(`2 - Por serviço`)
+                            console.log(`0 - Voltar`)
+                            console.log('\n')
+                            opcao = entrada.receberNumero(`Opção desejada: `)
+                            switch(opcao){
+                                case 1:
+                                    dezProdutosMaisConsumidos(empresa.getClientes)
+                                    break
+                                case 2:
+                                    dezServicosMaisConsumidos(empresa.getClientes)
+                                    break
+                                case 0:
+                                    break
+                                default:
+                                    console.log('\n')
+                                    console.log(`Operação não entendida :(`)
+                            }
+                        }while(opcao !== 0)
+                        break
+                    case 3:
+                        do{
+                            console.log('\n')
+                            console.log(`1 - Por produto`)
+                            console.log(`2 - Por serviço`)
+                            console.log(`0 - Voltar`)
+                            console.log('\n')
+                            opcao = entrada.receberNumero(`Opção desejada: `)
+                            switch(opcao){
+                                case 1:
+                                    produtosMaisConsumidos(empresa.getClientes)
+                                    break
+                                case 2:
+                                    servicosMaisConsumidos(empresa.getClientes)
+                                    break
+                                case 0:
+                                    break
+                                default:
+                                    console.log('\n')
+                                    console.log(`Operação não entendida :(`)
+                            }
+                        }while(opcao !== 0)
+                        break
+                    case 4:
+                        do{
+                            console.log('\n')
+                            console.log(`Filtrar por tipo, raça ou ambos?:`)
+                            console.log(`1 - Tipo`)
+                            console.log(`2 - Raça`)
+                            console.log(`3 - Ambos`)
+                            console.log(`0 - Voltar`)
+
+                            let tipo
+                            let raca
+                            console.log('\n')
+                            opcao = entrada.receberNumero(`Opção desejada: `)
+                            switch (opcao){
+                                case 1:
+                                    console.log('\n')
+                                    tipo = entrada.receberTexto('Digite o tipo do pet ')
+                                    break
+                                case 2:
+                                    console.log('\n')
+                                    raca = entrada.receberTexto('Digite a raça do pet ')
+                                    break
+                                case 3:
+                                    console.log('\n')
+                                    tipo = entrada.receberTexto('Digite o tipo do pet ')
+                                    raca = entrada.receberTexto('Digite a raça do pet ')
+                                    break
+                                case 0:
+                                    break
+                                default:
+                                    console.log('\n')
+                                    console.log('Operação não entendida :(')
+                            }
+                            console.log('\n')
+                            console.log(`Escolha a sua categoria:`)
+                            console.log(`1 - Produtos`)
+                            console.log(`2 - Serviços`)
+                            console.log(`0 - Voltar`)
+                            console.log('\n')
+                            opcao = entrada.receberNumero(`Opção desejada: `)
+                            switch (opcao){
+                                case 1:
+                                    let listClientesProdPet = new ListagemClientes(empresa.getClientes)
+                                    listClientesProdPet.clientesProdutosMaisConsumidosPet(tipo, raca)
+                                    break
+                                case 2:
+                                    let listClientesServPet = new ListagemClientes(empresa.getClientes)
+                                    listClientesServPet.clientesServicosMaisConsumidosPet(tipo, raca)
+                                    break
+                                case 0:
+                                    break
+                                default:
+                                    console.log('\n')
+                                    console.log('Operação não entendida :(')
+                            }
+                            break
+                        }while(opcao !== 0)
+                        break
+                    case 5:
+                        cincoMais(empresa.getClientes)
+                        break
+                    case 0:
+                        break
+                    default:
+                        console.log('\n')
+                        console.log(`Operação não entendida :(`)
                 }
             }while(opcao !== 0)
             break

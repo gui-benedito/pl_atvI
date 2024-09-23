@@ -64,5 +64,37 @@ export default class Cliente {
         this.nomeSocial = nomeSocial
         this.cpf = cpf
         this.rg = rg
-    }   
+    } 
+    
+    public listarProduto(){
+        let produtos: {[key: string]: number} = {}
+        this.getProdutosConsumidos.forEach((p) => {
+            if(!produtos[p.nome]){
+                produtos[p.nome] = 0
+            }
+            produtos[p.nome] += 1
+        })
+        console.log(`Lista de produtos de ${this.nome}`)
+        Object.entries(produtos).forEach((p) => {
+            console.log(`Produto: ${p[0]}, quantidade: ${p[1]}`)
+        })
+    }
+
+    public listarServico(){
+        let servicos: {[key: string]: number} = {}
+        this.getServicosConsumidos.forEach((p) => {
+            if(!servicos[p.nome]){
+                servicos[p.nome] = 0
+            }
+            servicos[p.nome] += 1
+        })
+        console.log(`Lista de serviços de ${this.nome}`)
+        Object.entries(servicos).forEach((p) => {
+            console.log(`Serviço: ${p[0]}, quantidade: ${p[1]}`)
+        })
+    }
+
+    public possuiPet(tipo: string | undefined, raca: string  | undefined) {
+        return this.pets.filter(p => (p.getTipo == tipo && tipo != undefined) || (p.getRaca == raca && raca != undefined)).length > 0
+    }
 }

@@ -12,7 +12,7 @@ export default class CadastroPet extends Cadastro{
         this.entrada = new Entrada()
     }
     public cadastrar(): void {
-        console.log(`\nCadastro de pet:`)
+        console.log(`Cadastro de pet:`)
         let nome = this.entrada.receberTexto(`Nome: `)
         let raca = this.entrada.receberTexto(`Raça: `)
         let genero = this.entrada.receberTexto(`Gênero: `)
@@ -28,7 +28,7 @@ export default class CadastroPet extends Cadastro{
             this.cliente.getPets.splice(id, 1)
             console.log('Pet deletado com sucesso')
         }else {
-            console.log(`ID inválido. Nenhum pet foi deletado.`);
+            console.log(`ID inválido. Nenhum pet foi deletado.`)
         }
     }
 
@@ -45,7 +45,7 @@ export default class CadastroPet extends Cadastro{
             let raca: string
             let tipo: string
             let genero: string
-            let opcao = this.entrada.receberNumero(`O que deseja atualizar:`)
+            let opcao = this.entrada.receberNumero(`O que deseja atualizar: `)
             switch(opcao){
                 case 1:
                     nome = this.entrada.receberTexto(`Novo nome: `)
