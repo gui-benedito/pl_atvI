@@ -20,7 +20,7 @@ export default class CadastroProduto extends Cadastro{
         }
         let quantidade = this.entrada.receberNumero('Quantidade: ')
         if(isNaN(quantidade)){
-            console.log('Quantidade inválido')
+            console.log('Valor inválido')
             return
         }
         let novoProduto = new Produto(nome, valor, quantidade)
