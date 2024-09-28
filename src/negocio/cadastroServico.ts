@@ -14,6 +14,10 @@ export default class CadastroServico extends Cadastro{
     public cadastrar(): void {
         let nome = this.entrada.receberTexto('Nome: ')
         let valor = this.entrada.receberNumero('Valor: ')
+        if(isNaN(valor)){
+            console.log('Valor inválido')
+            return
+        }
         let novoServico = new Servico(nome, valor)
         let Servicos = this.empresa.getServicos
         if(Servicos){
@@ -47,11 +51,19 @@ export default class CadastroServico extends Cadastro{
                         break
                     case 2:
                         novoValor = this.entrada.receberNumero(`Novo valor: `)
+                        if(isNaN(novoValor)){
+                            console.log('Valor inválido')
+                            break
+                        }
                         servico.setValor = novoValor
                         break
                     case 3:
                         novoNome = this.entrada.receberTexto(`Novo nome: `)
                         novoValor = this.entrada.receberNumero(`Novo valor: `)
+                        if(isNaN(novoValor)){
+                            console.log('Valor inválido')
+                            break
+                        }
                         servico.setNome = novoNome
                         servico.setValor = novoValor
                         break

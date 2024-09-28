@@ -14,34 +14,107 @@ export default class CadastroCliente extends Cadastro {
         this.entrada = new Entrada()
     }
     public cadastrar(): void {
-        console.log(`Início do cadastro do cliente`);
+        console.log(`Início do cadastro do cliente`)
+        const nomeRegex = /^[a-zA-ZÀ-ÿ\s]+$/
         let nome = this.entrada.receberTexto(`Por favor informe o nome do cliente: `)
+        if(!nomeRegex.test(nome)){
+            console.log('Nome inválido')
+            return
+        }
         let nomeSocial = this.entrada.receberTexto(`Por favor informe o nome social do cliente: `)
-
-        let valorCPF = this.entrada.receberTexto(`Por favor informe o número do cpf: `);
-        let dataCPF = this.entrada.receberTexto(`Por favor informe a data de emissão do cpf, no padrão dd/mm/yyyy: `);
+        if(!nomeRegex.test(nomeSocial)){
+            console.log('Nome social inválido')
+            return
+        }
+        let valorCPF = this.entrada.receberTexto(`Por favor informe o número do cpf: `)
+        let dataCPF = this.entrada.receberTexto(`Por favor informe a data de emissão do cpf, no padrão dd/mm/yyyy: `)
+        
+        const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/
+    
+        if (!dateRegex.test(dataCPF)) {
+            console.log('Data de emissão do CPF inválida. Use o formato dd/mm/yyyy.')
+            return
+        }
+    
         let partesDataCPF = dataCPF.split('/')
-        let anocpf = new Number(partesDataCPF[2].valueOf()).valueOf()
-        let mescpf = new Number(partesDataCPF[1].valueOf()).valueOf()
-        let diacpf = new Number(partesDataCPF[0].valueOf()).valueOf()
+        if (partesDataCPF.length !== 3) {
+            console.log('Data de emissão do CPF inválida.')
+            return
+        }
+    
+        let anocpf = Number(partesDataCPF[2])
+        let mescpf = Number(partesDataCPF[1]) 
+        let diacpf = Number(partesDataCPF[0])
+    
+        if (isNaN(anocpf) || isNaN(mescpf) || isNaN(diacpf)) {
+            console.log('Erro na conversão da data do CPF.')
+            return
+        }
+    
         let dataEmissaoCPF = new Date(anocpf, mescpf, diacpf)
-        let cpf = new CPF(valorCPF, dataEmissaoCPF);
+        if (!(dataEmissaoCPF instanceof Date)) {
+            console.log('Data de emissão do CPF inválida.')
+            return
+        }
+    
+        let cpf = new CPF(valorCPF, dataEmissaoCPF)
 
-        let valorRG = this.entrada.receberTexto(`Por favor informe o número do rg: `);
-        let dataRG = this.entrada.receberTexto(`Por favor informe a data de emissão do rg, no padrão dd/mm/yyyy: `);
-        let partesData = dataRG.split('/')
-        let ano = new Number(partesData[2].valueOf()).valueOf()
-        let mes = new Number(partesData[1].valueOf()).valueOf()
-        let dia = new Number(partesData[0].valueOf()).valueOf()
+        let valorRG = this.entrada.receberTexto(`Por favor informe o número do rg: `)
+        let dataRG = this.entrada.receberTexto(`Por favor informe a data de emissão do rg, no padrão dd/mm/yyyy: `)
+    
+        if (!dateRegex.test(dataRG)) {
+            console.log('Data de emissão do RG inválida. Use o formato dd/mm/yyyy.')
+            return
+        }
+    
+        let partesDataRG = dataRG.split('/')
+        if (partesDataRG.length !== 3) {
+            console.log('Data de emissão do RG inválida.')
+            return
+        }
+    
+        let ano = Number(partesDataRG[2])
+        let mes = Number(partesDataRG[1])
+        let dia = Number(partesDataRG[0])
+    
+        if (isNaN(ano) || isNaN(mes) || isNaN(dia)) {
+            console.log('Erro na conversão da data do RG.')
+            return
+        }
+    
         let dataEmissaoRG = new Date(ano, mes, dia)
-        let rg = new RG(valorRG, dataEmissaoRG);
+        if (!(dataEmissaoRG instanceof Date)) {
+            console.log('Data de emissão do RG inválida.')
+            return
+        }
+    
+        let rg = new RG(valorRG, dataEmissaoRG)
+        
+        const numberRegex = /^[0-9]+$/
 
-        let ddd = this.entrada.receberTexto(`Por favor informe o número do ddd: `);
-        let numero = this.entrada.receberTexto(`Por favor informe o número do telefone: `);
+        let ddd = this.entrada.receberTexto(`Por favor informe o número do DDD: `)
+        if (!numberRegex.test(ddd)) { 
+            console.log('DDD inválido. Deve conter apenas números.')
+            return
+        }
+
+        let numero = this.entrada.receberTexto(`Por favor informe o número do telefone: `)
+        if (!numberRegex.test(numero)) { 
+            console.log('Número de telefone inválido. Deve conter apenas números.')
+            return
+        }
+
         let telefone = new Telefone(ddd, numero)
 
-        let cliente = new Cliente(nome, nomeSocial, cpf, rg, telefone);
+        if (!(telefone instanceof Telefone)) {
+            console.log('Erro ao cadastrar telefone')
+            return
+        }
+            
+        // Criando o cliente
+        let cliente = new Cliente(nome, nomeSocial, cpf, rg, telefone)
         this.clientes.push(cliente)
         console.log(`Cadastro concluído :)`)
     }
+    
 }
