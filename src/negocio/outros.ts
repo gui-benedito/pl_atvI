@@ -37,6 +37,10 @@ export function produtosMaisConsumidos(clientes: Cliente[]){
         })
     })
     const listaArray = Object.entries(lista)
+    if(!listaArray.length){
+        console.log('Sem produtos consumidos!')
+        return
+    }
     listaArray.sort((a, b) => b[1] - a[1])
     listaArray.forEach((e) => {
         console.log(`${e[0]} - ${e[1]}`)
@@ -54,6 +58,10 @@ export function servicosMaisConsumidos(clientes: Cliente[]){
         })
     })
     const listaArray = Object.entries(lista)
+    if(!listaArray.length){
+        console.log('Sem serviços consumidos!')
+        return
+    }
     listaArray.sort((a, b) => b[1] - a[1])
     listaArray.forEach((e) => {
         console.log(`${e[0]} - ${e[1]}`)
@@ -74,9 +82,9 @@ export function cincoMais(clientes: Cliente[]){
         })
     })
     const listaArray = Object.entries(lista)
-    listaArray.sort((a,b) => b[1] - a[1]).slice(0, 5)
+    listaArray.sort((a,b) => b[1] - a[1])
     console.log(`Clientes que mais consumiram:`)
-    listaArray.forEach((e) => {
+    listaArray.slice(0, 5).forEach((e) => {
         console.log(`Nome: ${e[0]}, R$${e[1].toFixed(2)}`)
     })
 }

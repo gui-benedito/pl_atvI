@@ -1,6 +1,13 @@
+const fs = require('fs')
+const path = require('path')
 import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
+import CPF from "../modelo/cpf";
 import Empresa from "../modelo/empresa";
+import Pet from "../modelo/pet";
+import Produto from "../modelo/produto";
+import RG from "../modelo/rg";
+import Servico from "../modelo/servico";
 import CadastroCliente from "../negocio/cadastroCliente";
 import CadastroPet from "../negocio/cadastroPet";
 import CadastroProduto from "../negocio/cadastroProduto";
@@ -14,6 +21,47 @@ import { cincoMais, dezProdutosMaisConsumidos, dezServicosMaisConsumidos, produt
 console.log(`Bem-vindo ao melhor sistema de gerenciamento de pet shops e clínicas veterinarias`)
 let empresa = new Empresa()
 let execucao = true
+
+interface bancoDB {
+    [base: string]: any[]
+}
+
+const filePath = path.join(__dirname, './', 'cliente.json')
+let banco: bancoDB = {}
+
+try {
+    const rawData = fs.readFileSync(filePath, 'utf-8')
+    banco = JSON.parse(rawData)
+} catch (error) {
+}
+
+for(const [key, values] of Object.entries(banco)){
+    values.forEach((value) => {
+        const clientes = empresa.getClientes
+        const produtos = empresa.getProdutos
+        const servicos = empresa.getServicos
+        if(key === 'clientes'){
+            let cpf = new CPF(value['cpf']['numero'], value['cpf']['dataEmissao'])
+            let rg = new RG(value['rg']['numero'], value['rg']['dataEmissao'])
+            let cliente = new Cliente(value['nome'], value['nomeSocial'], cpf, rg, value['telefone'])
+            const pets: any[] = value['pets']
+            const clientePet = cliente.getPets
+            pets.forEach(p => {
+                const pet = new Pet(p['nome'], p['raca'], p['genero'], p['tipo'])
+                clientePet.push(pet)
+            })
+            clientes.push(cliente)
+        }
+        if(key === 'produtos'){
+            let produto = new Produto(value['nome'], value['valor'], value['quantidade'])
+            produtos.push(produto)
+        }
+        if(key === 'servicos'){
+            let servico = new Servico(value['nome'], value['valor'])
+            servicos.push(servico)
+        }
+    })
+}
 
 while (execucao) {
     console.log(`Bem vindo à PetLover! Escolha o menu desejado:`)
@@ -354,21 +402,23 @@ while (execucao) {
 
                             let tipo
                             let raca
+                            let opcaoFiltro
                             console.log('\n')
                             opcao = entrada.receberNumero(`Opção desejada: `)
                             switch (opcao){
                                 case 1:
                                     console.log('\n')
-                                    tipo = entrada.receberTexto('Digite o tipo do pet ')
+                                    tipo = entrada.receberTexto('Digite o tipo do pet: ')
                                     break
                                 case 2:
                                     console.log('\n')
-                                    raca = entrada.receberTexto('Digite a raça do pet ')
+                                    raca = entrada.receberTexto('Digite a raça do pet: ')
                                     break
                                 case 3:
                                     console.log('\n')
-                                    tipo = entrada.receberTexto('Digite o tipo do pet ')
-                                    raca = entrada.receberTexto('Digite a raça do pet ')
+                                    tipo = entrada.receberTexto('Digite o tipo do pet: ')
+                                    raca = entrada.receberTexto('Digite a raça do pet: ')
+                                    opcaoFiltro = true
                                     break
                                 case 0:
                                     break
@@ -390,7 +440,7 @@ while (execucao) {
                                     break
                                 case 2:
                                     let listClientesServPet = new ListagemClientes(empresa.getClientes)
-                                    listClientesServPet.clientesServicosMaisConsumidosPet(tipo, raca)
+                                    listClientesServPet.clientesServicosMaisConsumidosPet(tipo, raca, opcaoFiltro)
                                     break
                                 case 0:
                                     break

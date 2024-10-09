@@ -20,7 +20,7 @@ export default class ListagemClientes extends Listagem {
     }
 
     public clientesProdutosMaisConsumidosPet(tipo: string | undefined , raca: string | undefined) {
-        const clientesPorProduto = this.clientes.filter(c => c.possuiPet(tipo, raca))
+        let clientesPorProduto = this.clientes.filter(c => c.possuiPet(tipo, raca))
         if(!clientesPorProduto){
             console.log(`Não há clientes com essa raça ou tipo`)
             return
@@ -41,9 +41,14 @@ export default class ListagemClientes extends Listagem {
         })
     }
 
-    public clientesServicosMaisConsumidosPet(tipo: string | undefined , raca: string | undefined) {
-        const clientesPorProduto = this.clientes.filter(c => c.possuiPet(tipo, raca))
-        if(!clientesPorProduto){
+    public clientesServicosMaisConsumidosPet(tipo: string | undefined , raca: string | undefined, opcaoFiltro: boolean | undefined) {
+        let clientesPorProduto
+        if(!opcaoFiltro){
+            clientesPorProduto = this.clientes.filter(c => c.possuiPet(tipo, raca))
+        } else {
+            clientesPorProduto = this.clientes.filter(c => c.possuiPet2(tipo, raca))
+        }
+        if(!clientesPorProduto.length){
             console.log(`Não há clientes com essa raça ou tipo`)
             return
         }

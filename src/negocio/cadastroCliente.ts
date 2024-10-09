@@ -27,6 +27,12 @@ export default class CadastroCliente extends Cadastro {
             return
         }
         let valorCPF = this.entrada.receberTexto(`Por favor informe o número do cpf: `)
+
+        if(!valorCPF){
+            console.log('Informe o CPF')
+            return
+        }
+
         let dataCPF = this.entrada.receberTexto(`Por favor informe a data de emissão do cpf, no padrão dd/mm/yyyy: `)
         
         const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/

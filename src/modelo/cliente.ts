@@ -74,6 +74,10 @@ export default class Cliente {
             }
             produtos[p.nome] += 1
         })
+        if(Object.keys(produtos).length === 0){
+            console.log(`Sem produtos cadastrados`)
+            return
+        }
         console.log(`Lista de produtos de ${this.nome}`)
         Object.entries(produtos).forEach((p) => {
             console.log(`Produto: ${p[0]}, quantidade: ${p[1]}`)
@@ -88,13 +92,21 @@ export default class Cliente {
             }
             servicos[p.nome] += 1
         })
+        if(Object.keys(servicos).length === 0){
+            console.log(`Sem serviços cadastrados`)
+            return
+        }
         console.log(`Lista de serviços de ${this.nome}`)
         Object.entries(servicos).forEach((p) => {
             console.log(`Serviço: ${p[0]}, quantidade: ${p[1]}`)
         })
     }
-
+    // função para filtrar por tipo OU raça
     public possuiPet(tipo: string | undefined, raca: string  | undefined) {
         return this.pets.filter(p => (p.getTipo == tipo && tipo != undefined) || (p.getRaca == raca && raca != undefined)).length > 0
+    }
+    // função para filtrar por tipo E raça
+    public possuiPet2(tipo: string | undefined, raca: string  | undefined) {
+        return this.pets.filter(p => (p.getTipo == tipo && tipo != undefined) && (p.getRaca == raca && raca != undefined)).length > 0
     }
 }
