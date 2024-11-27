@@ -43,21 +43,21 @@ for(const [key, values] of Object.entries(banco)){
         if(key === 'clientes'){
             let cpf = new CPF(value['cpf']['numero'], value['cpf']['dataEmissao'])
             let rg = new RG(value['rg']['numero'], value['rg']['dataEmissao'])
-            let cliente = new Cliente(value['nome'], value['nomeSocial'], cpf, rg, value['telefone'])
+            let cliente = new Cliente(value['id'], value['nome'], value['nomeSocial'], cpf, rg, value['telefone'])
             const pets: any[] = value['pets']
             const clientePet = cliente.getPets
             pets.forEach(p => {
-                const pet = new Pet(p['nome'], p['raca'], p['genero'], p['tipo'])
+                const pet = new Pet(p['id'], p['nome'], p['raca'], p['genero'], p['tipo'])
                 clientePet.push(pet)
             })
             clientes.push(cliente)
         }
         if(key === 'produtos'){
-            let produto = new Produto(value['nome'], value['valor'], value['quantidade'])
+            let produto = new Produto(value['id'], value['nome'], value['valor'], value['quantidade'])
             produtos.push(produto)
         }
         if(key === 'servicos'){
-            let servico = new Servico(value['nome'], value['valor'])
+            let servico = new Servico(value['id'], value['nome'], value['valor'])
             servicos.push(servico)
         }
     })
@@ -128,8 +128,6 @@ while (execucao) {
                 break
             }
             console.log('\n')
-            let cliente = empresa.findCliente(entrada.receberNumero('Digite o numero do id do cliente: '))            
-            if(cliente) {
                 do{
                     console.log('\n')
                     console.log(`Opções:`)
@@ -143,34 +141,28 @@ while (execucao) {
                     entrada = new Entrada()
                     console.log('\n')
                     opcao = entrada.receberNumero(`Opção desejada: `)
+                    let id: number
+                    let cliente
                     switch(opcao){
                         case 1:
-                            let cadastro = new CadastroPet(cliente)
-                            cadastro.cadastrar()
+                            let cadastro = new CadastroPet(empresa)
+                                cadastro.cadastrar()
                             break
                         case 2:
-                            if(cliente.confirmaPets()){
-                                let listagem = new ListagemPet(cliente)
-                                listagem.listar()
-                            }
+                            let listagem = new ListagemPet(empresa)
+                            listagem.listar()
                             break
                         case 3:
-                            if(cliente.confirmaPets()){
-                                let listarPet = new ListagemPet(cliente)
-                                listarPet.petEspecifico()
-                            }
+                            let listarPet = new ListagemPet(empresa)
+                            listarPet.petEspecifico()
                             break
                         case 4:
-                            if(cliente.confirmaPets()){
-                                let deletarPet = new CadastroPet(cliente)
-                                deletarPet.deletar()
-                            }
+                            let deletarPet = new CadastroPet(empresa)
+                            deletarPet.deletar()
                             break
                         case 5:
-                            if(cliente.confirmaPets()){
-                                let updatePet = new CadastroPet(cliente)
-                                updatePet.updatePet()
-                            }
+                            let updatePet = new CadastroPet(empresa)
+                            updatePet.updatePet()
                             break
                         case 0:
                             break
@@ -179,11 +171,6 @@ while (execucao) {
                             console.log(`Operação não entendida :(`)
                     }
                 }while(opcao !== 0)
-
-            }else{
-                console.log('\n')
-                console.log(`Cliente não encontrado!`)
-            }
             break
         case 3:
             do{

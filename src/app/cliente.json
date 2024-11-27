@@ -1,0 +1,378 @@
+{
+    "clientes": [
+      {
+        "id": 1,
+        "nome": "João Silva",
+        "nomeSocial": "Joãozinho",
+        "cpf": {
+          "numero": "12345678900",
+          "dataEmissao": "10/05/2009"
+        },
+        "rg": {
+          "numero": "12.345.678-9",
+          "dataEmissao": "15/02/2001"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Bolinha", 
+            "raca": "srd", 
+            "genero": "macho",
+            "tipo": "gato"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "nomeSocial": "Mariazinha",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Preta", 
+            "raca": "fila", 
+            "genero": "femea",
+            "tipo": "cachorro"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "nome": "Ana Caroline",
+        "nomeSocial": "Ana",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Sushi", 
+            "raca": "srd", 
+            "genero": "macho",
+            "tipo": "cachorro"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "nome": "Renata Bracks",
+        "nomeSocial": "Re",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Nina", 
+            "raca": "srd", 
+            "genero": "femea",
+            "tipo": "gato"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "nome": "Felipe Maga",
+        "nomeSocial": "Felipe",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Thuga", 
+            "raca": "srd", 
+            "genero": "femea",
+            "tipo": "cachorro"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "nome": "Fernanda Backs",
+        "nomeSocial": "Fe",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Nana", 
+            "raca": "srd", 
+            "genero": "femea",
+            "tipo": "gato"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "nome": "Lucas Benedito",
+        "nomeSocial": "Bene",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Lenin", 
+            "raca": "srd", 
+            "genero": "macho",
+            "tipo": "gato"
+          },
+          {
+            "nome": "Frida", 
+            "raca": "srd", 
+            "genero": "femea",
+            "tipo": "gato"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "nome": "Guilherme Benedito",
+        "nomeSocial": "Gui",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Bidu", 
+            "raca": "srd", 
+            "genero": "macho",
+            "tipo": "cachorro"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "nome": "Diogo Dias",
+        "nomeSocial": "Diogo",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Duda", 
+            "raca": "srd", 
+            "genero": "femea",
+            "tipo": "cachorro"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "nome": "Rosemary",
+        "nomeSocial": "Mara",
+        "cpf": {
+          "numero": "98765432100",
+          "dataEmissao": "01/10/2000"
+        },
+        "rg": {
+          "numero": "987654321",
+          "dataEmissao": "03/06/2000"
+        },
+        "telefone": [],
+        "endereco": {
+            "id": 1,
+            "estado": "São Paulo",
+            "cidade": "São Paulo",
+            "bairro": "Jardins",
+            "rua": "Avenida Paulista",
+            "numero": "1000",
+            "codigoPostal": "01310-100",
+            "informacoesAdicionais": "Prédio comercial próximo ao metrô Trianon-Masp.",
+            "links": []
+        },
+        "pets": [
+          {
+            "nome": "Bidu", 
+            "raca": "srd", 
+            "genero": "macho",
+            "tipo": "cachorro"
+          }
+        ]
+      }
+    ],
+    "produtos": [
+        {
+            "id": 1,
+            "nome": "Racao",
+            "valor": 50,
+            "quantidade": 200
+        },
+        {
+            "id": 2,
+            "nome": "Remedio",
+            "valor": 20,
+            "quantidade": 200
+        },
+        {
+            "id": 3,
+            "nome": "brinquedo",
+            "valor": 10,
+            "quantidade": 200
+        }
+    ],
+    "servicos": [
+        {
+            "id": 1,
+            "nome": "Banho",
+            "valor": 60
+        },
+        {
+            "id": 2,
+            "nome": "Tosa",
+            "valor": 40
+        },
+        {
+            "id": 3,
+            "nome": "daycare",
+            "valor": 90
+        }
+    ]
+  }
+  

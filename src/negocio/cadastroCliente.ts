@@ -116,9 +116,15 @@ export default class CadastroCliente extends Cadastro {
             console.log('Erro ao cadastrar telefone')
             return
         }
+
+        let id = 0
+        if(this.clientes.length > 0){
+            const ultimoClienteId = this.clientes[this.clientes.length - 1]['id']
+            id = ultimoClienteId + 1 
+        } 
             
         // Criando o cliente
-        let cliente = new Cliente(nome, nomeSocial, cpf, rg, telefone)
+        let cliente = new Cliente(id, nome, nomeSocial, cpf, rg, telefone)
         this.clientes.push(cliente)
         console.log(`Cadastro concluído :)`)
     }

@@ -6,6 +6,7 @@ import Servico from "./servico"
 import Telefone from "./telefone"
 
 export default class Cliente {
+    public id: number
     public nome: string
     public nomeSocial: string
     private cpf: CPF
@@ -15,7 +16,8 @@ export default class Cliente {
     private produtosConsumidos: Array<Produto>
     private servicosConsumidos: Array<Servico>
     private pets: Array<Pet>
-    constructor(nome: string, nomeSocial: string, cpf: CPF, rg: RG, telefone: Telefone) {
+    constructor(id: number, nome: string, nomeSocial: string, cpf: CPF, rg: RG, telefone: Telefone) {
+        this.id = id
         this.nome = nome
         this.nomeSocial = nomeSocial
         this.cpf = cpf

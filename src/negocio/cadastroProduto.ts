@@ -23,7 +23,14 @@ export default class CadastroProduto extends Cadastro{
             console.log('Valor inválido')
             return
         }
-        let novoProduto = new Produto(nome, valor, quantidade)
+
+        let id = 0
+        if(this.empresa.getProdutos.length > 0){
+            const ultimoProdutoId = this.empresa.getProdutos[this.empresa.getProdutos.length - 1]['id']
+            id = ultimoProdutoId + 1
+        }
+
+        let novoProduto = new Produto(id, nome, valor, quantidade)
         let produtos = this.empresa.getProdutos
         if(produtos){
             produtos.push(novoProduto)
@@ -37,7 +44,8 @@ export default class CadastroProduto extends Cadastro{
 
     public updateProduto(): void{
         let id = this.entrada.receberNumero('Id do produto a ser atualizado: ')
-        let produto = this.empresa.getProdutos[id]
+        const indiceProduto = this.empresa.getProdutos.findIndex((s) => s.id === id)
+        let produto = this.empresa.getProdutos[indiceProduto]
         if(produto){
             let opcao: number
             do{
@@ -102,8 +110,10 @@ export default class CadastroProduto extends Cadastro{
 
     public deletarProduto(): void{
         let id = this.entrada.receberNumero(`Id do produto a ser deletado: `)
-        if(id >= 0 && id < this.empresa.getProdutos.length){
-            this.empresa.getProdutos.splice(id, 1)
+        const ultimoProdutoId = this.empresa.getProdutos[this.empresa.getProdutos.length - 1]['id']
+        if(id >= 0 && id <= ultimoProdutoId){
+            const indiceProduto = this.empresa.getProdutos.findIndex((s) => s.id === id)
+            this.empresa.getProdutos.splice(indiceProduto, 1)
             console.log('Produto deletado com sucesso')
         }else{
             console.log('Produto não encontrado')

@@ -11,7 +11,7 @@ export default class ListagemServicos extends Listagem{
     public listar(): void {
         console.log(`Servicos:`)
         this.empresa.getServicos.forEach((produto, i) => {
-            console.log(`Id: ${i}`)
+            console.log(`Id: ${produto.id}`)
             console.log(`Nome: ${produto.nome}`)
             console.log(`Valor: ${produto.valor}`)
             console.log(`--------------------------------`)

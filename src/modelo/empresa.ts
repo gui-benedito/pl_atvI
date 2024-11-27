@@ -75,7 +75,8 @@ export default class Empresa{
         let id = this.entrada.receberNumero(`Id do cliente a ser deletado: `);
         // Verifica se o id está dentro do intervalo de clientes
         if (id >= 0 && id < this.clientes.length) {
-            this.clientes.splice(id, 1) // Remove o cliente no índice `id`
+            const indiceCliente = this.clientes.findIndex((c) => c.id === id)
+            this.clientes.splice(indiceCliente, 1) // Remove o cliente no índice `id`
             console.log(`Cliente deletado com sucesso!`);
         } else {
             console.log(`ID inválido. Nenhum cliente foi deletado.`);
@@ -84,7 +85,7 @@ export default class Empresa{
 
     public updateCliente(){
         let id = this.entrada.receberNumero(`Id do cliente a ser atualziado: `)
-        let cliente = this.getClientes[id]
+        let cliente = this.getClientes.find((c) => c.id === id)
         if(!cliente){
             console.log('Cliente não encontrado!')
             return

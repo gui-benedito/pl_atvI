@@ -18,7 +18,14 @@ export default class CadastroServico extends Cadastro{
             console.log('Valor inválido')
             return
         }
-        let novoServico = new Servico(nome, valor)
+
+        let id = 0
+        if(this.empresa.getServicos.length > 0){
+            const ultimoServicoId = this.empresa.getServicos[this.empresa.getServicos.length - 1]['id']
+            id = ultimoServicoId + 1
+        }
+
+        let novoServico = new Servico(id, nome, valor)
         let Servicos = this.empresa.getServicos
         if(Servicos){
             Servicos.push(novoServico)
@@ -31,8 +38,9 @@ export default class CadastroServico extends Cadastro{
     }
 
     public updateServico(): void{
-        let id = this.entrada.receberNumero('Id do produto a ser atualizado: ')
-        let servico = this.empresa.getServicos[id]
+        let id = this.entrada.receberNumero('Id do serviço a ser atualizado: ')
+        const indiceServico = this.empresa.getServicos.findIndex((s) => s.id === id)
+        let servico = this.empresa.getServicos[indiceServico]
         if(servico){
             let opcao: number
             do{
@@ -80,8 +88,10 @@ export default class CadastroServico extends Cadastro{
 
     public deletarServico(): void{
         let id = this.entrada.receberNumero(`Id do serviço a ser deletado: `)
-        if(id >= 0 && id < this.empresa.getServicos.length){
-            this.empresa.getServicos.splice(id, 1)
+        const ultimoServicoId = this.empresa.getServicos[this.empresa.getServicos.length - 1]['id']
+        if(id >= 0 && id <= ultimoServicoId){
+            const indiceServico = this.empresa.getServicos.findIndex((s) => s.id === id)
+            this.empresa.getServicos.splice(indiceServico, 1)
             console.log('Serviço deletado com sucesso')
         }else{
             console.log('Serviço não encontrado')
