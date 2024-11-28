@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+import { findAncestor } from "typescript";
 import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
 import CPF from "../modelo/cpf";
@@ -300,29 +301,26 @@ while (execucao) {
                             console.log('\n')
                             opcao = entrada.receberNumero(`Opção desejada: `)
                             let id: number
-                            let cliente: Cliente
                             switch(opcao){
                                 case 1:
                                     console.log('\n')
                                     id = entrada.receberNumero(`Id do cliente: `)
-                                    cliente = empresa.getClientes[id]
-                                    if(!cliente){
-                                        console.log('\n')
-                                        console.log(`Cliente não encontrado!`)
+                                    const cliente = empresa.getClientes.find((c) => c.id === id)
+                                    if(cliente){
+                                        cliente.listarProduto()
                                         break
                                     }
-                                    cliente.listarProduto()
+                                    console.log('Cliente não encontrado')
                                     break
                                 case 2:
                                     console.log('\n')
                                     id = entrada.receberNumero(`Id do cliente: `)
-                                    cliente = empresa.getClientes[id]
-                                    if(!cliente){
-                                        console.log('\n')
-                                        console.log(`Cliente não encontrado!`)
+                                    const clienteFound = empresa.getClientes.find((c) => c.id === id)
+                                    if(clienteFound){
+                                        clienteFound.listarServico()
                                         break
                                     }
-                                    cliente.listarServico()
+                                    console.log('Cliente não encontrado')
                                     break
                                 case 0:
                                     break

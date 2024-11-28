@@ -26,6 +26,7 @@
         },
         "pets": [
           {
+            "id": 1,
             "nome": "Bolinha", 
             "raca": "srd", 
             "genero": "macho",
@@ -59,6 +60,7 @@
         },
         "pets": [
           {
+            "id": 2,
             "nome": "Preta", 
             "raca": "fila", 
             "genero": "femea",
@@ -92,6 +94,7 @@
         },
         "pets": [
           {
+            "id": 3,
             "nome": "Sushi", 
             "raca": "srd", 
             "genero": "macho",
@@ -125,6 +128,7 @@
         },
         "pets": [
           {
+            "id": 4,
             "nome": "Nina", 
             "raca": "srd", 
             "genero": "femea",
@@ -158,6 +162,7 @@
         },
         "pets": [
           {
+            "id": 5,
             "nome": "Thuga", 
             "raca": "srd", 
             "genero": "femea",
@@ -191,6 +196,7 @@
         },
         "pets": [
           {
+            "id": 6,
             "nome": "Nana", 
             "raca": "srd", 
             "genero": "femea",
@@ -224,12 +230,14 @@
         },
         "pets": [
           {
+            "id": 7,
             "nome": "Lenin", 
             "raca": "srd", 
             "genero": "macho",
             "tipo": "gato"
           },
           {
+            "id": 8,
             "nome": "Frida", 
             "raca": "srd", 
             "genero": "femea",
@@ -263,6 +271,7 @@
         },
         "pets": [
           {
+            "id": 9,
             "nome": "Bidu", 
             "raca": "srd", 
             "genero": "macho",
@@ -296,6 +305,7 @@
         },
         "pets": [
           {
+            "id": 10,
             "nome": "Duda", 
             "raca": "srd", 
             "genero": "femea",
@@ -329,6 +339,7 @@
         },
         "pets": [
           {
+            "id": 11,
             "nome": "Bidu", 
             "raca": "srd", 
             "genero": "macho",

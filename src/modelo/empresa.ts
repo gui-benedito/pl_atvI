@@ -117,7 +117,7 @@ export default class Empresa{
 
     public vendaProduto(): void{
         let idCliente = this.entrada.receberNumero(`Id do cliente: `)
-        let cliente = this.getClientes[idCliente]
+        let cliente = this.getClientes.find((c) => c.id === idCliente)
         if(!cliente){
             console.log('Cliente não encontrado!')
             return
@@ -138,7 +138,7 @@ export default class Empresa{
 
     public vendaServico(){
         let idCliente = this.entrada.receberNumero(`Id do cliente: `)
-        let cliente = this.getClientes[idCliente]
+        let cliente = this.getClientes.find((c) => c.id === idCliente)
         if(!cliente){
             console.log('Cliente não encontrado!')
             return
