@@ -74,8 +74,9 @@ export default class Empresa{
     public deletar(): void{
         let id = this.entrada.receberNumero(`Id do cliente a ser deletado: `);
         // Verifica se o id está dentro do intervalo de clientes
-        if (id >= 0 && id < this.clientes.length) {
-            const indiceCliente = this.clientes.findIndex((c) => c.id === id)
+        const indiceCliente = this.clientes.findIndex((c) => c.id === id)
+        const cliente = this.clientes.find((c) => c.id === id)
+        if (cliente) {
             this.clientes.splice(indiceCliente, 1) // Remove o cliente no índice `id`
             console.log(`Cliente deletado com sucesso!`);
         } else {

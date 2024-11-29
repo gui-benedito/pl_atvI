@@ -18,6 +18,10 @@ export default class CadastroPet extends Cadastro{
         clientes.forEach((c) => c.getPets.forEach((p) => pets.push(p)))
         let idCliente = this.entrada.receberNumero('Id cliente: ')
         const cliente = clientes.find((c) => c.id === idCliente)
+        if(!cliente){
+            console.log('Cliente não encontrado')
+            return
+        }
         let nome = this.entrada.receberTexto(`Nome: `)
         let raca = this.entrada.receberTexto(`Raça: `)
         let genero = this.entrada.receberTexto(`Gênero: `)
